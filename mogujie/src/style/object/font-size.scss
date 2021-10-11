@@ -1,0 +1,10 @@
+@for $i from 13 through 50 {
+  [fz#{$i * 2}] {
+    font-size: #{$i * 2}px;
+  }
+}
+
+/**
+[fz30] {
+  font-size: 30px;
+}*/
