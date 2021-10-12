@@ -26,12 +26,14 @@
     "@vue/cli-plugin-router": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
     "@vue/compiler-sfc": "^3.2.20",
+    "babel-plugin-import": "^1.13.3",
     "compass-mixins": "^0.12.10",
     "postcss-plugin-px2rem": "^0.8.1",
     "postcss-px-to-viewport": "^1.1.1",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "svg-sprite-loader": "^6.0.9",
-    "vite": "^2.6.4"
+    "vite": "^2.6.4",
+    "vite-plugin-style-import": "^1.2.1"
   }
 }

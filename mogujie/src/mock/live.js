@@ -1,5 +1,5 @@
 import Mock from "mockjs";
-import { getParamsFromRestful } from "../utils/tools";
+import { getParamsFromRestful } from '@/utils/tools';
 
 export default {
   // 获取直播列表

@@ -1,5 +1,6 @@
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
+import styleImport from "vite-plugin-style-import";
 
 const path = require("path");
 
@@ -11,7 +12,18 @@ export default defineConfig({
   //环境配置
   mode: "development",
   // 插件
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    styleImport({
+      libs: [
+        {
+          libraryName: "vant",
+          esModule: true,
+          resolveStyle: (name) => `vant/es/${name}/style`,
+        },
+      ],
+    }),
+  ],
   // 静态资源服务的文件夹
   publicDir: "public",
   resolve: {
@@ -19,45 +31,29 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
-    dedupe: [],
-    // 情景导出package.json配置中的exports 字段
-    conditions: [],
-    // 解析package.json中的字段
-    mainFields: ["module", "jsnext:main", "jsnext"],
-    // 导入时想要省略的扩展名列表
-    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
+    // dedupe: [],
+    // // 情景导出package.json配置中的exports 字段
+    // conditions: [],
+    // // 解析package.json中的字段
+    // mainFields: ["module", "jsnext:main", "jsnext"],
+    // // 导入时想要省略的扩展名列表
+    // extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
   },
   css: {
     // 配置 CSS modules 的行为。选项将被传递给 postcss-modules。
-    modules: {
-      rules: [
-        {
-          test: /\.(sc|sa|c)ss$/,
-          use: [
-            "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                importLoaders: 2,
-              },
-            },
-            "sass-loader",
-            "postcss-loader",
-          ],
-        },
-      ],
-    },
+    // modules: {},
     loaderOptions: {
-      postcss: {
-        plugins: [
-          require("postcss-plugin-px2rem")({
-            rootValue: 75,
-            exclude: /(node_module)/,
-            minPixelValue: 3,
-            selectorBlackList: ["van"],
-          }),
-        ],
-      },
+      // Vite自身已经集成PostCSS,无需再次安装, 另外也无需单独创建PostCSS配置文件
+      // postcss: {
+      //   plugins: [
+      //     require("postcss-plugin-px2rem")({
+      //       rootValue: 75,
+      //       exclude: /(node_module)/,
+      //       minPixelValue: 3,
+      //       selectorBlackList: ["van"],
+      //     }),
+      //   ],
+      // },
     },
     // PostCSS 配置（格式同 postcss.config.js）
     // postcss-load-config 的插件配置
@@ -71,25 +67,25 @@ export default defineConfig({
       },
     },
   },
-  json: {
-    // 是否支持从 .json 文件中进行按名导入
-    namedExports: true,
-    // 若设置为 true，导入的 JSON 会被转换为 export default JSON.parse("...") 会比转译成对象字面量性能更好，
-    // 尤其是当 JSON 文件较大的时候，开启此项，则会禁用按名导入
-    stringify: false,
-  },
+  // json: {
+  //   // 是否支持从 .json 文件中进行按名导入
+  //   namedExports: true,
+  //   // 若设置为 true，导入的 JSON 会被转换为 export default JSON.parse("...") 会比转译成对象字面量性能更好，
+  //   // 尤其是当 JSON 文件较大的时候，开启此项，则会禁用按名导入
+  //   stringify: false,
+  // },
   // 继承自 esbuild 转换选项。最常见的用例是自定义 JSX
-  esbuild: {
-    jsxFactory: "h",
-    jsxFragment: "Fragment",
-    jsxInject: `import React from 'react'`,
-  },
+  // esbuild: {
+  //   jsxFactory: "h",
+  //   jsxFragment: "Fragment",
+  //   jsxInject: `import React from 'react'`,
+  // },
   // 静态资源处理  字符串|正则表达式
-  assetsInclude: "",
+  // assetsInclude: "",
   // 调整控制台输出的级别 'info' | 'warn' | 'error' | 'silent'
-  logLevel: "info",
+  // logLevel: "info",
   // 设为 false 可以避免 Vite 清屏而错过在终端中打印某些关键信息
-  clearScreen: true,
+  // clearScreen: true,
   // 服务
   server: {
     //服务器主机名
@@ -122,64 +118,64 @@ export default defineConfig({
     },
     // 开发服务器配置 CORS
     // boolean | CorsOptions
-    cors: {},
+    // cors: {},
     //设置为 true 强制使依赖预构建
-    force: true,
+    // force: true,
     //禁用或配置 HMR 连接
-    hmr: {},
+    // hmr: {},
     //传递给 chokidar 的文件系统监视器选项
-    watch: {},
+    // watch: {},
   },
   // 构建
-  build: {
-    // 浏览器兼容性  "esnext"|"modules"
-    target: "modules",
-    // 输出路径
-    outDir: "dist",
-    // 生成静态资源的存放路径
-    assetsDir: "assets",
-    // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
-    assetsInlineLimit: 4096,
-    // 启用/禁用 CSS 代码拆分
-    cssCodeSplit: true,
-    // 构建后是否生成 source map 文件
-    sourcemap: false,
-    // 自定义底层的 Rollup 打包配置
-    rollupOptions: {},
-    // @rollup/plugin-commonjs 插件的选项
-    commonjsOptions: {},
-    // 构建的库
-    lib: {},
-    // 当设置为 true，构建后将会生成 manifest.json 文件
-    // 设置为 false 可以禁用最小化混淆，或是用来指定使用哪种混淆器
-    manifest: false,
-    // boolean | 'terser' | 'esbuild'
-    minify: "terser",
-    // 传递给 Terser 的更多 minify 选项。
-    terserOptions: {},
-    // 设置为 false 来禁用将构建后的文件写入磁盘
-    write: true,
-    // 默认情况下，若 outDir 在 root 目录下，则 Vite 会在构建时清空该目录。
-    emptyOutDir: true,
-    // 启用/禁用 brotli 压缩大小报告
-    brotliSize: true,
-    // chunk 大小警告的限制
-    chunkSizeWarningLimit: 500,
-  },
-  // 依赖优化选项
-  optimizeDeps: {
-    // 检测需要预构建的依赖项
-    entries: [],
-    // 预构建中强制排除的依赖项
-    exclude: [],
-    // 默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
-    include: [],
-  },
-  // SSR 选项
-  ssr: {
-    // 列出的是要为 SSR 强制外部化的依赖
-    external: [],
-    // 列出的是防止被 SSR 外部化依赖项。
-    noExternal: [],
-  },
+  // build: {
+  //   // 浏览器兼容性  "esnext"|"modules"
+  //   target: "modules",
+  //   // 输出路径
+  //   outDir: "dist",
+  //   // 生成静态资源的存放路径
+  //   assetsDir: "assets",
+  //   // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
+  //   assetsInlineLimit: 4096,
+  //   // 启用/禁用 CSS 代码拆分
+  //   cssCodeSplit: true,
+  //   // 构建后是否生成 source map 文件
+  //   sourcemap: false,
+  //   // 自定义底层的 Rollup 打包配置
+  //   rollupOptions: {},
+  //   // @rollup/plugin-commonjs 插件的选项
+  //   commonjsOptions: {},
+  //   // 构建的库
+  //   lib: {},
+  //   // 当设置为 true，构建后将会生成 manifest.json 文件
+  //   // 设置为 false 可以禁用最小化混淆，或是用来指定使用哪种混淆器
+  //   manifest: false,
+  //   // boolean | 'terser' | 'esbuild'
+  //   minify: "terser",
+  //   // 传递给 Terser 的更多 minify 选项。
+  //   terserOptions: {},
+  //   // 设置为 false 来禁用将构建后的文件写入磁盘
+  //   write: true,
+  //   // 默认情况下，若 outDir 在 root 目录下，则 Vite 会在构建时清空该目录。
+  //   emptyOutDir: true,
+  //   // 启用/禁用 brotli 压缩大小报告
+  //   brotliSize: true,
+  //   // chunk 大小警告的限制
+  //   chunkSizeWarningLimit: 500,
+  // },
+  // // 依赖优化选项
+  // optimizeDeps: {
+  //   // 检测需要预构建的依赖项
+  //   entries: [],
+  //   // 预构建中强制排除的依赖项
+  //   exclude: [],
+  //   // 默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
+  //   include: [],
+  // },
+  // // SSR 选项
+  // ssr: {
+  //   // 列出的是要为 SSR 强制外部化的依赖
+  //   external: [],
+  //   // 列出的是防止被 SSR 外部化依赖项。
+  //   noExternal: [],
+  // },
 });

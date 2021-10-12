@@ -40,14 +40,16 @@
 
         <c-columns style='flex-wrap: wrap'>
           <router-link
-            v-for='(item, index) in categorys'
+            v-for='(item, index) in category'
             :key='index'
             :to="'/mall/goods?id='+item['id']+'&des='+item['title']"
           >
             <div
               class='c-category__goods'
               ph22 pv10 ml20 mb30
-              font-secondary radius6>{{ item['title'] }}
+              font-secondary radius6
+            >
+              {{ item['title'] }}
             </div>
           </router-link>
         </c-columns>
@@ -55,6 +57,7 @@
     </c-content>
   </c-layout>
 </template>
+
 <script>
 import { useRouter } from 'vue-router'
 import { getHotCategory, getGoodsId } from '@/api/mall.js'
@@ -88,7 +91,7 @@ export default {
 
     onMounted(() => {
       getHotCategory().then((res) => {
-        data.categorys = res.data
+        data.category = res.data
       })
     })
 

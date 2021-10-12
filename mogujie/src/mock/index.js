@@ -14,7 +14,7 @@ Mock.mock("/api/user/about", "get", user.getUser);
 
 // mall
 Mock.mock("/api/mall/category", "get", mall.getCategory);
-Mock.mock(/\/api\/mall\/categorys\/\d*/, "get", mall.getOneCategory);
+Mock.mock(/\/api\/mall\/category\/\d*/, "get", mall.getOneCategory);
 Mock.mock("/api/mall/banners", "get", mall.getBanners);
 Mock.mock("/api/mall/brand-videos", "get", mall.getBrandVideos);
 Mock.mock(/\/api\/mall\/brand-videos\/\d*/, "get", mall.getBrandVideosById);

@@ -1,8 +1,6 @@
 import { Aside, Content, Footer, Header, Layout } from "./layout";
 import Category from "./category";
 import FootNav from "./foot-nav";
-import Col from "vant/lib/col";
-import Row from "vant/lib/row";
 
 import {
   SvgButton,
@@ -25,6 +23,7 @@ import FastMenu from "./fast-menu";
 import Launch from "./launch";
 import Search from "./search";
 import Magazine from "./magazine";
+import { Col, Row } from "vant";
 
 const components = {
   Layout,

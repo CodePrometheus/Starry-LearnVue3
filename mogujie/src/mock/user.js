@@ -4,8 +4,7 @@ export default {
   // login
   login: (config) => {
     const { username, password } = JSON.parse(config.body);
-
-    if (username === "admin" && password === "admin") {
+    if (username == 'admin' && password == 'admin') {
       return Mock.mock({
         status: 200,
         msg: "登录成功",
@@ -17,16 +16,16 @@ export default {
       });
     } else {
       return Mock.mock({
-        status: 404,
+        status: 1234,
         msg: "账号或密码错误",
         data: {},
       });
     }
   },
 
-  getUser() {
+  getUser(config) {
     let data = "";
-    if (JSON.parse(config.body)["token"] == "4378488sdsd29399281xjdjfkdf") {
+    if (JSON.parse(config.body)["token"] == "starry-mogujie") {
       data = {
         data: {
           token: "starry-mogujie",

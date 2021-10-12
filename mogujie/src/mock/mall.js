@@ -1,5 +1,5 @@
 import Mock from "mockjs";
-import { getParamsFromRestful } from "../utils/tools";
+import { getParamsFromRestful } from "@/utils/tools";
 
 export default {
   // 获取商品类目
@@ -18,9 +18,8 @@ export default {
 
   // 获取某种品类
   getOneCategory: (config) => {
-    const params = getParamsFromRestful(config.url, "/api/mall/categorys/:id");
+    const params = getParamsFromRestful(config.url, "/api/mall/category/:id");
     let list = "";
-
     if (params["id"] == 0) {
       list = Mock.mock({
         "data|30": [

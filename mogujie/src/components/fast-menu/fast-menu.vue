@@ -76,8 +76,7 @@
 </template>
 <script>
 import { reactive, toRefs } from 'vue'
-import Popup from 'vant/lib/popup'
-import 'vant/lib/popup/style'
+import { Popup } from 'vant'
 
 export default {
   name: 'CFastMenu',

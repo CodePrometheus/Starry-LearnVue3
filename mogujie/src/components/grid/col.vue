@@ -66,7 +66,6 @@ export default {
 </script>
 
 <style lang='scss'
-       vars='{col, gridColumns, colOffset, gutter, condensed, alignSelf, flexGrow, flexShrink, flexBasis, order, gridType, lastChild}'
        scoped>
 .c-col {
   @include grid-col(

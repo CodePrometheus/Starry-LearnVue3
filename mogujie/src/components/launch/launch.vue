@@ -41,7 +41,8 @@
           />
           <span
             style='color: #8e8e92'
-            ml20>
+            ml20
+          >
             超过2亿用户已下载
           </span>
         </c-columns>
@@ -49,7 +50,10 @@
       <c-button
         class='c-launch__button'
         @click='goAppStore'
-        radius4>打开APP
+        radius4
+        mr20
+      >
+        打开APP
       </c-button>
     </c-columns>
   </c-box-skin>
@@ -88,7 +92,7 @@ export default {
   @include e(button) {
     @include dimensions(150px, 50px);
     @include t-color-primary("background");
-    margin-left: 120px;
+    margin-left: auto;
   }
 }
 </style>
