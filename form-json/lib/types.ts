@@ -11,6 +11,34 @@ export enum SchemaTypes {
   'BOOLEAN' = 'boolean',
 }
 
+export const FieldPropsDefine = {
+  schema: {
+    type: Object as PropType<Schema>,
+    required: true
+  },
+  value: {
+    required: true
+  },
+  onChange: {
+    type: Function as PropType<(v: any) => void>,
+    required: true
+  },
+  rootSchema: {
+    type: Object as PropType<Schema>,
+    required: true
+  },
+  // errorSchema: {
+  //   type: Object as PropType<ErrorSchema>,
+  //   required: true
+  // },
+  // uiSchema: {
+  //   type: Object as PropType<UISchema>,
+  //   required: true
+  // }
+} as const
+
+export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
+
 type SchemaRef = { $ref: string }
 
 export interface Schema {
@@ -48,34 +76,6 @@ export interface Schema {
   exclusiveMaximum?: number
   exclusiveMinimum?: number
 }
-
-export const FieldPropsDefine = {
-  schema: {
-    type: Object as PropType<Schema>,
-    required: true
-  },
-  value: {
-    required: true
-  },
-  onChange: {
-    type: Function as PropType<(v: any) => void>,
-    required: true
-  },
-  rootSchema: {
-    type: Object as PropType<Schema>,
-    required: true
-  },
-  errorSchema: {
-    type: Object as PropType<ErrorSchema>,
-    required: true
-  },
-  uiSchema: {
-    type: Object as PropType<UISchema>,
-    required: true
-  }
-} as const
-
-export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
 
 export const CommonWidgetPropsDefine = {
   value: {},

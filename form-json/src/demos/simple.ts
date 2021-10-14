@@ -2,7 +2,7 @@ export default {
   name: 'Starry',
   schema: {
     description: 'A simple form example.',
-    type: 'string',
+    type: 'object',
     required: ['firstName', 'lastName'],
     properties: {
       firstName: {
@@ -64,11 +64,11 @@ export default {
     }
   },
   default: {
-    firstName: 'Chuck',
-    lastName: 'Norris',
+    firstName: 'starry',
+    lastName: 'star',
     age: 75,
     bio: 'Roundhouse kicking asses since 1940',
-    password: 'noneed',
-    singleTypeArray: [{ name: 'cwy', age: 28 }]
+    password: 'root',
+    singleTypeArray: [{ name: 'starry', age: 21 }]
   }
 }

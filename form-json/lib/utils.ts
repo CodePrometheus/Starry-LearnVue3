@@ -1,4 +1,4 @@
-const Ajv = require('ajv').default
+import Ajv from 'ajv'
 
 import { Schema } from './types'
 
@@ -47,8 +47,8 @@ export function resolveSchema(schema: Schema, rootSchema = {}, formData = {}) {
   } else if (hasOwnProperty(schema, 'allOf') && Array.isArray(schema.allOf)) {
     return {
       ...schema,
-      allOf: schema.allOf.map((allOfSubschema) =>
-        retrieveSchema(allOfSubschema, rootSchema, formData)
+      allOf: schema.allOf.map((allOfSubSchema) =>
+        retrieveSchema(allOfSubSchema, rootSchema, formData)
       )
     }
   } else {
