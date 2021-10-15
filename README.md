@@ -14,4 +14,7 @@ Vite2 + Vue3 + Vant
 
 ## Starry-JsonForm
 
+## Starry-BBS
+
+Vite2 + Vue3 + Bootstrap
 
