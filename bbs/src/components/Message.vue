@@ -1,36 +1,32 @@
-<script lang='ts'>
+<script lang='ts' setup>
 import { defineComponent, PropType, ref } from 'vue'
 import useDOMCreate from '../hooks/useDOMCreate'
 
 export type MessageType = 'success' | 'error' | 'default'
-export default defineComponent({
-  props: {
-    message: String,
-    type: {
-      type: String as PropType<MessageType>,
-      default: 'default'
-    }
-  },
-  emits: ['close-message'],
-  setup(props, context) {
-    useDOMCreate('message')
-    const isVisible = ref(true)
-    const classObject = {
-      'alert-success': props.type === 'success',
-      'alert-danger': props.type === 'error',
-      'alert-primary': props.type === 'default'
-    }
-    const hide = () => {
-      isVisible.value = false
-      context.emit('close-message', true)
-    }
-    return {
-      classObject,
-      isVisible,
-      hide
-    }
+
+const props = defineComponent({
+  message: String,
+  type: {
+    type: String as PropType<MessageType>,
+    default: 'default'
   }
 })
+
+const emits = defineEmits(['close-message'])
+
+useDOMCreate('message')
+const isVisible = ref(true)
+
+const classObject = {
+  'alert-success': props.type === 'success',
+  'alert-danger': props.type === 'error',
+  'alert-primary': props.type === 'default'
+}
+
+const hide = () => {
+  isVisible.value = false
+  emits('close-message', true)
+}
 </script>
 
 <template>

@@ -39,11 +39,9 @@ const onFormSubmit = async (result: boolean) => {
 </script>
 
 <template>
-  <div class='mx-auto p-3 w-900'>
-    <h5 class='my-4 text-center'>登录</h5>
-    <ValidateForm
-      @form-submit='onFormSubmit'
-    >
+  <div class='login-page mx-auto p-3 w-330'>
+    <h5 class='my-4 text-center'>登录到者也</h5>
+    <ValidateForm @form-submit='onFormSubmit'>
       <div class='mb-3'>
         <label class='form-label'>邮箱地址</label>
         <ValidateInput
@@ -56,15 +54,11 @@ const onFormSubmit = async (result: boolean) => {
       </div>
       <div class='mb-3'>
         <label class='form-label'>密码</label>
-        <ValidateInput
-          type='password' placeholder='请输入密码'
-          :rules='passwordRules' v-model='passwordVal'
-        />
+        <ValidateInput type='password' placeholder='请输入密码'
+                       :rules='passwordRules' v-model='passwordVal' />
       </div>
       <template #submit>
-        <button type='submit'
-                class='btn btn-primary btn-block btn-large center'>登录
-        </button>
+        <button type='submit' class='btn btn-primary btn-block btn-large'>登录</button>
       </template>
     </ValidateForm>
   </div>

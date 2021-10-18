@@ -65,3 +65,33 @@ export const asyncAndCommit = async (fn: Function, data: any, mutationName: stri
     console.log(error)
   }
 }
+
+type ErrorType = 'size' | 'format' | null
+
+interface CheckCondition {
+  format?: String[] // 格式
+  size?: number // 大小
+}
+
+/**
+ * 上传图片前的检查
+ * @param file 文件
+ * @param condition 条件
+ */
+export function beforeUploadCheck(file: File, condition: CheckCondition) {
+  const { format, size } = condition
+  console.log(file)
+  const isValIdFormat = format ? format.includes(file.type) : true
+  const isValidSize = size ? file.size / 1024 / 1024 < size : true
+  let error: ErrorType = null
+  if (!isValIdFormat) {
+    error = 'format'
+  }
+  if (!isValidSize) {
+    error = 'size'
+  }
+  return {
+    passed: isValIdFormat && isValidSize,
+    error
+  }
+}

@@ -25,7 +25,7 @@ watch(
 </script>
 
 <template>
-  <div class='d-flex flex-column'>
+  <div class='d-flex flex-column h-100'>
     <Header :user='currentUser' />
     <Loading text='拼命加载中' background='rgba(0,0,0,0.8)'
              v-if='isLoading' />

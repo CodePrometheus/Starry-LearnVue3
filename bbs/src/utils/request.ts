@@ -19,7 +19,9 @@ declare module 'axios' {
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (store.state.token) {
-      config.headers['Authorization'] = `Bearer ${ store.state.token }`
+      if (config.headers) {
+        config.headers['Authorization'] = `Bearer ${ store.state.token }`
+      }
     }
     if (config.loading) {
       store.commit('setLoading', true)

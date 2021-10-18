@@ -64,3 +64,9 @@ export interface ImageProps {
   createdAt?: string
   fitUrl?: string
 }
+
+export interface ResponseType<P = {}> {
+  code: number
+  msg: string
+  data: P
+}

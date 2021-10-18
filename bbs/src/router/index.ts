@@ -20,6 +20,11 @@ const routes = [
   {
     path: '/posts/:id',
     component: () => import('@/views/PostDetail.vue')
+  },
+  {
+    path: '/column/:id',
+    name: 'column',
+    component: () => import('@/views/ColumnDetail.vue')
   }
 ]
 
