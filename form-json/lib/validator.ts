@@ -1,9 +1,7 @@
 import Ajv, { ErrorObject } from 'ajv'
 import { Schema } from './types'
 import { isObject } from './utils'
-// import toPath from 'lodash.topath'
-// 没有 ts type文件时，使用require加载
-const i18n = require('ajv-i18n')
+import i18n from 'ajv-i18n'
 
 interface TransformedErrorObject {
   name: string

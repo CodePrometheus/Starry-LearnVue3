@@ -17,6 +17,7 @@
     "jss": "^10.8.0",
     "jss-preset-default": "^10.8.0",
     "lodash.union": "^4.6.0",
+    "ts-jest": "26.4.0",
     "vue": "^3.2.16",
     "vue-jss": "^0.0.4",
     "vue-router": "^4.0.11",

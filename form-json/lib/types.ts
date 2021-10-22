@@ -27,14 +27,14 @@ export const FieldPropsDefine = {
     type: Object as PropType<Schema>,
     required: true
   },
-  // errorSchema: {
-  //   type: Object as PropType<ErrorSchema>,
-  //   required: true
-  // },
-  // uiSchema: {
-  //   type: Object as PropType<UISchema>,
-  //   required: true
-  // }
+  errorSchema: {
+    type: Object as PropType<ErrorSchema>,
+    required: true
+  },
+  uiSchema: {
+    type: Object as PropType<UISchema>,
+    required: true
+  }
 } as const
 
 export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>

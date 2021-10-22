@@ -4,7 +4,7 @@
 
 ## Starry-Mogujie
 
-Vite2 + Vue3 + Vant
+Vite + Vue3 + Vant
 
 ![image-20211012210053632](./images/image-20211012210053632.png)
 
@@ -13,6 +13,8 @@ Vite2 + Vue3 + Vant
 ![image-20211012210130650](./images/image-20211012210130650.png)
 
 ## Starry-JsonForm
+
+Vite + Vue3 
 
 ## Starry-BBS
 

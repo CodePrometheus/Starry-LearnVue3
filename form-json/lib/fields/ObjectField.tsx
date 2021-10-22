@@ -1,6 +1,6 @@
-import { defineComponent, inject } from 'vue'
+import { defineComponent } from 'vue'
 import { FieldPropsDefine } from '../types'
-import { SchemaFormContextKey } from '../context'
+import { useContext } from '../context'
 import { isObject } from '../utils'
 
 export default defineComponent({
@@ -9,7 +9,6 @@ export default defineComponent({
   setup(props) {
     const handleObjectFieldChange = (key: string, v: any) => {
       const value: any = isObject(props.value) ? props.value : {}
-      console.log('typeof v : ', typeof v)
       if (v === undefined) {
         delete value[key]
       } else {
@@ -17,10 +16,10 @@ export default defineComponent({
       }
       props.onChange(value)
     }
-    const context: any = inject(SchemaFormContextKey)
 
+    const context = useContext()
     return () => {
-      const { schema, rootSchema, value } = props
+      const { schema, rootSchema, value, errorSchema, uiSchema } = props
       const { SchemaItem } = context
       const properties = schema.properties || {}
       const currentValue: any = isObject(value) ? value : {}
@@ -34,6 +33,8 @@ export default defineComponent({
             value={ currentValue[k] }
             key={ idx }
             onChange={ (v: any) => handleObjectFieldChange(k, v) }
+            errorSchema={ errorSchema[k] || {} }
+            uiSchema={ uiSchema.properties ? uiSchema.properties[k] || {} : {} }
           />
         )
       })
