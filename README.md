@@ -1,6 +1,6 @@
 # Starry-LearnVue3
 
-仓库项目全部基于 Vite2 + Vue3 + Js/Ts 构建
+仓库项目全部基于 Vite2 + Vue3 + Vuex/Pinia + Js/Ts 构建
 
 ## Starry-Mogujie
 
